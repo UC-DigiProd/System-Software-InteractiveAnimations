@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottie Embed</title>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        body, html { margin: 0; padding: 0; overflow: hidden; background: transparent; }
+        lottie-player { width: 100vw; height: 100vh; }
+    </style>
+</head>
+<body>
+    <lottie-player 
+        src="your-animation-file.json" 
+        background="transparent" 
+        speed="1" 
+        loop 
+        autoplay>
+    </lottie-player>
+</body>
+</html>
