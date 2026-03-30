@@ -4,7 +4,16 @@
     <meta charset="UTF-8">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
-        body, html { margin: 0; padding: 0; overflow: hidden; background: transparent; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        /* This makes the entire browser window clickable and the animation fill the screen */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden; 
+            background: transparent; 
+            height: 100vh; 
+            width: 100vw; 
+            cursor: pointer; /* Shows the hand icon everywhere */
+        }
         lottie-player { width: 100%; height: 100%; }
     </style>
 </head>
@@ -19,23 +28,19 @@
 
     <script>
         const player = document.getElementById('mainPlayer');
+        let currentState = 1;
 
-        // This runs once State 01 is fully loaded
-        player.addEventListener('ready', () => {
-            // Digging into the Lottie Shadow DOM to find the SVG
-            const lottieSVG = player.shadowRoot.querySelector('svg');
+        // Listen for a click anywhere on the page
+        window.addEventListener('click', () => {
             
-            // Targeting your specific AE layer name
-            const hotspot = lottieSVG.querySelector('[aria-label="Shape Layer 1"]');
-
-            if (hotspot) {
-                hotspot.style.cursor = "pointer";
-                hotspot.addEventListener('click', () => {
-                    console.log("Transitioning to State 02...");
-                    player.load("State02.json");
-                });
-            } else {
-                console.error("Could not find 'Shape Layer 1'. Check your AE layer name or Bodymovin settings.");
+            if (currentState === 1) {
+                console.log("Moving from State 01 to State 02");
+                player.load("State02.json");
+                currentState = 2;
+                
+                // Optional: Change cursor back to default if State 02 
+                // requires specific button clicks instead of 'anywhere'
+                // document.body.style.cursor = "default";
             }
         });
     </script>
