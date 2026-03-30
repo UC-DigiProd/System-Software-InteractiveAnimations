@@ -12,7 +12,7 @@
 
     <lottie-player 
         id="mainPlayer" 
-        src="state01.json" 
+        src="State01.json" 
         autoplay 
         loop>
     </lottie-player>
@@ -32,7 +32,7 @@
                 hotspot.style.cursor = "pointer";
                 hotspot.addEventListener('click', () => {
                     console.log("Transitioning to State 02...");
-                    player.load("state02.json");
+                    player.load("State02.json");
                 });
             } else {
                 console.error("Could not find 'Shape Layer 1'. Check your AE layer name or Bodymovin settings.");
