@@ -1,22 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lottie Embed</title>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
-        body, html { margin: 0; padding: 0; overflow: hidden; background: transparent; }
-        lottie-player { width: 100vw; height: 100vh; }
+        body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: transparent; }
+        lottie-player { width: 100%; height: 100%; cursor: pointer; }
     </style>
 </head>
 <body>
+
     <lottie-player 
-        src="State01.json" 
-        background="transparent" 
-        speed="1" 
-        loop 
-        autoplay>
+        id="myLottie" 
+        src="state01.json" 
+        autoplay 
+        loop>
     </lottie-player>
+
+    <script>
+        const player = document.getElementById('myLottie');
+
+        // Wait for the Lottie to load into the DOM
+        player.addEventListener('ready', () => {
+            // Get the internal SVG document
+            const lottieSVG = player.shadowRoot.querySelector('svg');
+            
+            // Find your AE layer by its name (Bodymovin adds 'aria-label')
+            // Note: AE Layer name "button_state01" becomes an aria-label in the SVG
+            const hotspot = lottieSVG.querySelector('[aria-label="Shape Layer 1"]');
+
+            if (hotspot) {
+                hotspot.style.cursor = "pointer";
+                hotspot.addEventListener('click', () => {
+                    // Transition to State 02
+                    player.load("state02.json");
+                });
+            }
+        });
+    </script>
 </body>
 </html>
